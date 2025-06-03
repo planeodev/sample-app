@@ -1,0 +1,26 @@
+replicaCount: 1
+
+image:
+  repository: product-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: product-service
+  type: ClusterIP
+  port: 8080
+
+database:
+  enabled: false
+
+global:
+  postgresql:
+    host: "product-service-postgresql"
+    port: "5432"
+    auth:
+      database: "productdb"
+      password: "super-secret"
+      username: "product-user"
+      postgresPassword: "newPostgresPassword123"
+
+resources: {}

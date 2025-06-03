@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-user-service
+spec:
+  selector:
+    app: {{ .Release.Name }}-user-service
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8082
+  type: {{ .Values.service.type }}

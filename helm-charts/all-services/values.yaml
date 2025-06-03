@@ -1,0 +1,13 @@
+
+global:
+  database:
+    enabled: false
+  postgresql:
+    host: "app-stack-postgresql"
+    port: "5432"
+    auth:
+      database: "appdb"
+      password: "super-secret"
+      username: "app-user"
+      postgresPassword: "newPostgresPassword123"
+ 

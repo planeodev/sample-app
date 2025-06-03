@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-order-service
+spec:
+  selector:
+    app: {{ .Release.Name }}-order-service
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8081
+  type: {{ .Values.service.type }}

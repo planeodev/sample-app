@@ -1,0 +1,26 @@
+replicaCount: 1
+
+image:
+  repository: order-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: order-service
+  type: ClusterIP
+  port: 8081
+
+database:
+  enabled: false
+
+global:
+  postgresql:
+    host: "order-service-postgresql"
+    port: "5432"
+    auth:
+      database: "orderdb"
+      password: "super-secret"
+      username: "order-user"
+      postgresPassword: "newPostgresPassword123"
+
+resources: {}

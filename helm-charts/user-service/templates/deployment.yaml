@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-user-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-user-service
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-user-service
+    spec:
+      containers:
+        - name: user-service
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8082
+          env:
+            - name: PORT
+              value: "8082"
+            - name: PSQL_DB_HOST
+              value: {{ .Values.global.postgresql.host }}
+            - name: PSQL_DB_PORT
+              value: "{{ .Values.global.postgresql.port }}"
+            - name: PSQL_DB_USER
+              value: {{ .Values.global.postgresql.auth.username }}
+            - name: PSQL_DB_PASSWORD
+              value: {{ .Values.global.postgresql.auth.password }}
+            - name: PSQL_DB_NAME
+              value: {{ .Values.global.postgresql.auth.database }}

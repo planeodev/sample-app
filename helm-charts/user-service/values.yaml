@@ -1,0 +1,26 @@
+replicaCount: 1
+
+image:
+  repository: user-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: user-service
+  type: ClusterIP
+  port: 8082
+
+database:
+  enabled: false
+
+global:
+  postgresql:
+    host: "user-service-postgresql"
+    port: "5432"
+    auth:
+      database: "userdb"
+      password: "super-secret"
+      username: "users-user"
+      postgresPassword: "newPostgresPassword123"
+
+resources: {}
