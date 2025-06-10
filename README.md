@@ -24,6 +24,7 @@ To run a specific service, such as the order service, use that specific helm cha
 
 ```
 $ cd helm-charts/order-service
+
 # first build dependencies
 $ helm dependency build
 
