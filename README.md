@@ -26,12 +26,16 @@ To run a specific service, such as the order service, use that specific helm cha
 $ cd helm-charts/order-service
 # first build dependencies
 $ helm dependency build
+
 # next install the helm chart, enabling the database
 $ helm install myorder-service . -f values.yaml --set database.enabled=true --set global.postgresql.host=myorder-service-postgresql.
+
 # forward the service port locally
 $ kubectl port-forward svc/myorder-service-order-service 8088:8081
+
 # access the running service
 $ curl localhost:8088
+
 # also hit the endpoint that accesses the DB
 $ curl localhost:8088/orders
 ```
@@ -44,14 +48,19 @@ To run all the services with a shared DB, use the `all-services` helm chat withi
 
 ```
 $ cd helm-charts/all-services
+
 # first build dependencies
 $ helm dependency build
+
 # next install the helm chart, ensuring the DB host matches
 $ helm install myappstack . -f values.yaml --set global.postgresql.host=myappstack-postgresql
+
 # forward the service port locally
 $ kubectl port-forward svc/myappstack-order-service 8088:8081
+
 # access the running service
 $ curl localhost:8088
+
 # also hit the endpoint that accesses the DB
 $ curl localhost:8088/orders
 ```
